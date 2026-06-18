@@ -1,0 +1,20 @@
+{
+  "name": "@hkx/omp-workflows",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OMP-native core workflow package adapted from Everything Claude Code.",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "install-global": "node scripts/install.mjs"
+  },
+  "omp": {
+    "name": "hkx-omp-workflows",
+    "extensions": [
+      "./extensions/hkx-language-quality.ts"
+    ],
+    "commands": "./commands",
+    "skills": "./skills",
+    "rules": "./rules"
+  }
+}
