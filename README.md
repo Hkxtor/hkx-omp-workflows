@@ -202,3 +202,7 @@ The validator checks required files, frontmatter, command naming, and common non
 ## Conversion Scope
 
 This is a core workflow package, not a full HKX mirror. Deferred surfaces include shell hook packs, session-history utilities, external wrapper commands, and large language-specific skill catalogs. See `docs/conversion-map.md`.
+
+## Analytics
+
+![Alt](https://repobeats.axiom.co/api/embed/30913d54fbca61c5d7b226b31440fad178e2606a.svg "Repobeats analytics image")
