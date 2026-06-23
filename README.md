@@ -104,6 +104,12 @@ All commands use an `hkx-` prefix to avoid collisions with OMP built-ins.
 | `hkx-git-workflow` | Branch, commit, PR, conflict, history, and release workflow guidance |
 | `hkx-safety-guard` | Guardrails for destructive commands, scoped writes, external mutation, and production work |
 | `hkx-security-scan` | OMP config, extension, MCP, command, skill, rule, secret, and permission scan workflow |
+| `hkx-benchmark` | Performance measurement, baseline comparison, and regression detection |
+| `hkx-deep-research` | Multi-source web research with parallel subagents and cited reports |
+| `hkx-exa-search` | Neural search via Exa MCP for web, code, and company research |
+| `hkx-market-research` | Competitive analysis, market intelligence, and industry research |
+| `hkx-plan-orchestrate` | Multi-step plan decomposition and agent chain design |
+| `hkx-research-ops` | Evidence-first current-state research workflow |
 
 ## Agents
 
