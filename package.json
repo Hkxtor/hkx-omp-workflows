@@ -11,7 +11,8 @@
   "omp": {
     "name": "hkx-omp-workflows",
     "extensions": [
-      "./extensions/hkx-language-quality.ts"
+      "./extensions/hkx-language-quality.ts",
+      "./extensions/hkx-gateguard.ts"
     ],
     "commands": "./commands",
     "skills": "./skills",

@@ -23,9 +23,11 @@ Rules are best for:
 - Security reminders
 - TTSR patterns such as `console.log`, bare `except`, or Rust `unwrap`
 
-## Extension
+## Extensions
 
-Executable extension behavior belongs in `extensions/hkx-language-quality.ts`.
+### hkx-language-quality.ts
+
+Post-execution notification extension.
 
 Current behavior:
 
@@ -42,6 +44,35 @@ It does not:
 - Block tool calls
 
 That default keeps the pack safe for projects that have not opted into automatic command execution.
+
+### hkx-gateguard.ts
+
+Pre-execution fact-forcing gate extension.
+
+Current behavior:
+
+- Intercepts `tool_call` events for `edit`, `write`, `ast_edit`, and `bash` before execution.
+- Blocks first access to each file with investigation questions (which importers, schemas, user instruction).
+- Blocks destructive Bash commands (`rm -rf`, `git push --force`, `DROP TABLE`, etc.).
+- Tracks per-session state so a file passes the gate after the first denial.
+- Condenses denial messages after the first three full denials to prevent context bloat.
+
+Disable per-session:
+
+```text
+HKX_GATEGUARD=off
+```
+
+It does not:
+
+- Auto-investigate files
+- Run commands on the agent's behalf
+- Persist state across sessions
+
+Complementary surfaces:
+
+- `skills/gateguard/SKILL.md` — prompt-level gate guidance and output format.
+- `skills/safety-guard/SKILL.md` — runtime safety checks (non-overlapping).
 
 ## Future Additions
 

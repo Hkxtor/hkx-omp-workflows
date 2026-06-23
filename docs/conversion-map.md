@@ -119,8 +119,11 @@ This package ports a small, useful slice of HKX into an OMP-native extension pac
 | `HKX/rules/rust/hooks.md` | `rules/hkx-rust-no-unwrap.md` and `extensions/hkx-language-quality.ts` | Prompt-time panic reminder plus Rust validation reminder |
 | `HKX/rules/python/hooks.md` | `rules/hkx-python-no-bare-except.md` and `extensions/hkx-language-quality.ts` | Prompt-time exception reminder plus Python validation reminder |
 | `HKX/rules/golang/hooks.md` | `extensions/hkx-language-quality.ts` | Go validation reminder after relevant writes |
+| `ECC/scripts/hooks/gateguard-fact-force.js` | `extensions/hkx-gateguard.ts` | Pre-execution fact-forcing gate using OMP `tool_call` hook; blocks first edit/write per file and destructive bash; synced ECC evidence, denial-limit stability, and bash patterns (2026-06-23) |
 
-The OMP extension is intentionally notify-only. It does not run formatters or edit files automatically.
+The `hkx-language-quality.ts` extension is notify-only. It does not run formatters or edit files automatically.
+
+The `hkx-gateguard.ts` extension blocks tool execution via the `tool_call` event. Disable per-session with `HKX_GATEGUARD=off`.
 
 ## Ported MCP
 

@@ -93,6 +93,7 @@ const requiredFiles = [
 	"rules/hkx-web-design-quality.md",
 	"rules/hkx-web-performance.md",
 	"extensions/hkx-language-quality.ts",
+	"extensions/hkx-gateguard.ts",
 	"agents/typescript-reviewer.md",
 	"agents/build-error-resolver.md",
 	"agents/python-reviewer.md",
@@ -307,7 +308,8 @@ for (const filePath of textFiles) {
 
 const packageJson = JSON.parse(await fs.readFile(path.join(root, "package.json"), "utf8"));
 const extensionEntries = packageJson?.omp?.extensions;
-const allowedExtensions = new Set(["extensions/hkx-language-quality.ts"]);
+const allowedExtensions = new Set(["extensions/hkx-language-quality.ts",
+	"extensions/hkx-gateguard.ts"]);
 if (!Array.isArray(extensionEntries)) {
 	errors.push("package.json: omp.extensions must be an array");
 } else {

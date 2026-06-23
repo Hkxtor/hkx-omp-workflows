@@ -177,7 +177,7 @@ automation, workspace-surface, MCP-server, safety, and security-scan operations.
 
 ## Language Rules And Extensions
 
-This package includes common workflow rules, a small language rule pack for TypeScript, Python, Rust, and Go, plus an OMP extension.
+This package includes common workflow rules, a small language rule pack for TypeScript, Python, Rust, and Go, plus two OMP extensions.
 
 | Surface | Files |
 |---|---|
@@ -185,9 +185,11 @@ This package includes common workflow rules, a small language rule pack for Type
 | Language rules | `rules/hkx-typescript.md`, `rules/hkx-python.md`, `rules/hkx-rust.md`, `rules/hkx-go.md` |
 | TTSR-style reminders | `rules/hkx-ts-no-console-log.md`, `rules/hkx-rust-no-unwrap.md`, `rules/hkx-python-no-bare-except.md` |
 | Web rules | `rules/hkx-web-design-quality.md`, `rules/hkx-web-performance.md` |
-| Runtime extension | `extensions/hkx-language-quality.ts` |
+| Notify-only extension | `extensions/hkx-language-quality.ts` |
 
-The runtime extension only notifies. It does not format files, edit files, or run build commands automatically.
+| Pre-action gate extension | `extensions/hkx-gateguard.ts` |
+
+The language-quality extension only notifies. It does not format files, edit files, or run build commands automatically. The gateguard extension blocks first access per file and destructive commands; disable with `HKX_GATEGUARD=off`.
 
 ## MCP
 

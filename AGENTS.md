@@ -16,6 +16,7 @@ Included surfaces:
 - `rules/`: common, language, web, and reminder rules for OMP sessions.
 - `agents/`: portable agent definitions adapted to OMP canonical tools.
 - `extensions/hkx-language-quality.ts`: notify-only language-quality extension.
+- `extensions/hkx-gateguard.ts`: pre-action fact-forcing gate extension using OMP `tool_call` hook.
 - `.mcp.json` and `mcp-configs/`: default and reference MCP configuration surfaces.
 - `docs/conversion-map.md`: authoritative migration map from HKX to OMP.
 
@@ -69,10 +70,10 @@ Deferred surfaces stay out of this core package unless the user explicitly asks 
 - Agents in this extension package are portable definitions. OMP core may not auto-discover extension `agents/`; users may need to copy or symlink them into `.omp/agents/` or `~/.omp/agents/`.
 - Keep agent responsibilities narrow: reviewers review, build resolvers fix build/type/test failures with minimal diffs.
 
-### Extension
+### Extensions
 
-- `extensions/hkx-language-quality.ts` is notify-only.
-- It must not format files, edit files, install packages, run builds, or mutate project state automatically.
+- `extensions/hkx-language-quality.ts` is notify-only. It must not format files, edit files, install packages, run builds, or mutate project state automatically.
+- `extensions/hkx-gateguard.ts` blocks first edit/write per file and destructive commands via `tool_call`. Disable with `HKX_GATEGUARD=off`.
 - Keep extension messages actionable and low-noise.
 
 ### MCP Config
