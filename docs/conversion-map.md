@@ -82,6 +82,12 @@ This package ports a small, useful slice of HKX into an OMP-native extension pac
 | `HKX/skills/orch-fix-defect/SKILL.md` | `skills/orch-fix-defect/SKILL.md` | Bug-fix wrapper adapted to OMP agent and command references |
 | `HKX/skills/orch-refine-code/SKILL.md` | `skills/orch-refine-code/SKILL.md` | Refactor wrapper adapted to OMP `refactor-cleaner` agent and command references |
 | `ECC/skills/config-gc/SKILL.md` | `skills/config-gc/SKILL.md` | Adapted to OMP config paths (`.omp/`, `~/.omp/`), OMP tooling (`find`/`search`/`read`), and OMP-specific scan channels (commands, rules, extensions) |
+| `ECC/skills/benchmark/SKILL.md` | `skills/benchmark/SKILL.md` | Adapted to OMP browser/bash tools, `.omp/benchmarks/` storage, and OMP skill references (`hkx-canary-watch`, `hkx-web-performance`) |
+| `ECC/skills/research-ops/SKILL.md` | `skills/research-ops/SKILL.md` | Adapted to OMP skill references (`hkx-exa-search`, `hkx-deep-research`); deferred `lead-intelligence` and `knowledge-ops` |
+| `ECC/skills/deep-research/SKILL.md` | `skills/deep-research/SKILL.md` | Adapted to OMP `task` tool for parallel subagents, `read` for URL fetching, `web_search` fallback |
+| `ECC/skills/market-research/SKILL.md` | `skills/market-research/SKILL.md` | Adapted to OMP tools (`web_search`, `read`, `task`) and related skill references |
+| `ECC/skills/exa-search/SKILL.md` | `skills/exa-search/SKILL.md` | Adapted to OMP `.mcp.json` / `~/.omp/.mcp.json` config paths; added `web_search` fallback |
+| `ECC/skills/plan-orchestrate/SKILL.md` | `skills/plan-orchestrate/SKILL.md` | Adapted to OMP `task`/`parallel` invocation shape; removed ECC install form detection; aligned agent catalogue with OMP agents |
 
 ## Ported Rules
 
