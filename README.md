@@ -186,7 +186,6 @@ This package includes common workflow rules, a small language rule pack for Type
 | TTSR-style reminders | `rules/hkx-ts-no-console-log.md`, `rules/hkx-rust-no-unwrap.md`, `rules/hkx-python-no-bare-except.md` |
 | Web rules | `rules/hkx-web-design-quality.md`, `rules/hkx-web-performance.md` |
 | Notify-only extension | `extensions/hkx-language-quality.ts` |
-
 | Pre-action gate extension | `extensions/hkx-gateguard.ts` |
 
 The language-quality extension only notifies. It does not format files, edit files, or run build commands automatically. The gateguard extension blocks first access per file and destructive commands; disable with `HKX_GATEGUARD=off`.
