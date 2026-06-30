@@ -20,6 +20,9 @@ This package ports a small, useful slice of HKX into an OMP-native extension pac
 | `HKX/commands/refactor-clean.md` | `commands/hkx-refactor-clean.md` | Behavior-preserving refactor workflow |
 | `HKX/commands/test-coverage.md` | `commands/hkx-test-coverage.md` | Contract-driven test coverage |
 | `HKX/commands/project-init.md` | `commands/hkx-project-init.md` | Dry-run OMP project initialization |
+| `ECC/commands/cost-report.md` | `commands/hkx-cost-report.md` | Adapted from ECC cost-tracker: uses OMP path guidance instead of a hardcoded metrics path |
+| `ECC/commands/skill-create.md` | `commands/hkx-skill-create.md` | Adapted to OMP: removed GitHub App integration, uses `Bash` for `git log` instead of ECC scripts path |
+| `ECC/commands/skill-health.md` | `commands/hkx-skill-health.md` | Adapted to OMP: replaced ECC bash script with `grep`/`glob`/`read` tool-based audit; removed `--json` and `--panel` options |
 
 ## Ported Skills
 
@@ -138,21 +141,23 @@ The `hkx-gateguard.ts` extension blocks tool execution via the `tool_call` event
 - `HKX/scripts/hooks/mcp-health-check.js` and other hook-based MCP utilities: These are harness-specific and are managed natively by OMP's internal extension/plugin capabilities.
 
 ## Ported Agents
-
 | HKX Source | OMP Target | Notes |
 |---|---|---|
+| `ECC/agents/code-architect.md` | `agents/code-architect.md` | Adapted to OMP: tools changed to `[read, grep, glob]` (read-only), model set to `pi/slow`, removed Prompt Defense Baseline |
+| `ECC/agents/code-explorer.md` | `agents/code-explorer.md` | Adapted to OMP: model set to `pi/slow`, removed Prompt Defense Baseline; tools kept as `[read, grep, glob]` |
+| `ECC/agents/code-simplifier.md` | `agents/code-simplifier.md` | Adapted to OMP: tools changed to `[read, grep, glob, write, edit, bash]`, model set to `pi/slow`, removed Prompt Defense Baseline |
+| `HKX/agents/code-reviewer.md` | `agents/code-reviewer.md` | Portable OMP general code reviewer; evidence-gated findings and no mutation behavior |
+| `HKX/agents/doc-updater.md` | `agents/doc-updater.md` | Portable OMP documentation and codemap specialist with canonical tools and evidence-backed updates |
+| `HKX/agents/go-build-resolver.md` | `agents/go-build-resolver.md` | Full OMP canonical tools; simplified commands; replaced `grep` check on `go.mod` with OMP tool-based `read`/`search` instructions |
+| `HKX/agents/go-reviewer.md` | `agents/go-reviewer.md` | Tools adapted to OMP canonical names; references `go-workflow` and `hkx-go` |
+| `HKX/agents/pr-test-analyzer.md` | `agents/pr-test-analyzer.md` | Portable OMP test-quality reviewer focused on changed behavior and regression risk |
+| `HKX/agents/python-reviewer.md` | `agents/python-reviewer.md` | Tools adapted to OMP canonical names; references skill `python-workflow` and rule `hkx-python` |
+| `HKX/agents/rust-build-resolver.md` | `agents/rust-build-resolver.md` | Full OMP canonical tools; simplified commands; replaced `grep` checks for `edition`/`rust-version` with OMP tool-based `read`/`search` instructions |
+| `HKX/agents/rust-reviewer.md` | `agents/rust-reviewer.md` | Tools adapted to OMP canonical names; simplified diagnostic commands to remove prohibited pipes and redirections; references `rust-workflow`/`rust-patterns`/`rust-testing` |
+| `HKX/agents/security-reviewer.md` | `agents/security-reviewer.md` | Portable OMP security reviewer; read-only findings with canonical tools and `pi/slow` model |
+| `HKX/agents/silent-failure-hunter.md` | `agents/silent-failure-hunter.md` | Portable OMP reviewer for swallowed errors, bad fallbacks, and missing propagation |
 | `HKX/agents/typescript-reviewer.md` | `agents/typescript-reviewer.md` | Adapted tools to OMP canonical names; updated rules/skills references; model set to `pi/slow` |
 | `HKX/agents/build-error-resolver.md` | `agents/build-error-resolver.md` | Enabled OMP canonical tools; updated references to local commands/skills (`hkx-refactor-clean`, `hkx-plan`, `tdd-workflow`) |
-| `HKX/agents/python-reviewer.md` | `agents/python-reviewer.md` | Tools adapted to OMP canonical names; references skill `python-workflow` and rule `hkx-python` |
-| `HKX/agents/rust-reviewer.md` | `agents/rust-reviewer.md` | Tools adapted to OMP canonical names; simplified diagnostic commands to remove prohibited pipes and redirections; references `rust-workflow`/`rust-patterns`/`rust-testing` |
-| `HKX/agents/rust-build-resolver.md` | `agents/rust-build-resolver.md` | Full OMP canonical tools; simplified commands; replaced `grep` checks for `edition`/`rust-version` with OMP tool-based `read`/`search` instructions |
-| `HKX/agents/go-reviewer.md` | `agents/go-reviewer.md` | Tools adapted to OMP canonical names; references `go-workflow` and `hkx-go` |
-| `HKX/agents/go-build-resolver.md` | `agents/go-build-resolver.md` | Full OMP canonical tools; simplified commands; replaced `grep` check on `go.mod` with OMP tool-based `read`/`search` instructions |
-| `HKX/agents/security-reviewer.md` | `agents/security-reviewer.md` | Portable OMP security reviewer; read-only findings with canonical tools and `pi/slow` model |
-| `HKX/agents/code-reviewer.md` | `agents/code-reviewer.md` | Portable OMP general code reviewer; evidence-gated findings and no mutation behavior |
-| `HKX/agents/silent-failure-hunter.md` | `agents/silent-failure-hunter.md` | Portable OMP reviewer for swallowed errors, bad fallbacks, and missing propagation |
-| `HKX/agents/pr-test-analyzer.md` | `agents/pr-test-analyzer.md` | Portable OMP test-quality reviewer focused on changed behavior and regression risk |
-| `HKX/agents/doc-updater.md` | `agents/doc-updater.md` | Portable OMP documentation and codemap specialist with canonical tools and evidence-backed updates |
 
 ### Deferred / Skipped Agents
 

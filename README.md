@@ -34,21 +34,23 @@ All commands use an `hkx-` prefix to avoid collisions with OMP built-ins.
 
 | Command | Purpose |
 |---|---|
-| `/hkx-workflow` | Research, plan, implement, verify, and review with OMP-native agents |
+| `/hkx-build-fix` | Detect build failures and fix them incrementally |
+| `/hkx-checkpoint` | Create, compare, or list lightweight `.omp/checkpoints.log` workflow checkpoints |
+| `/hkx-code-review` | Review local changes or a PR without posting externally by default |
+| `/hkx-cost-report` | Generate a local cost report from OMP cost-tracking data |
 | `/hkx-plan` | Produce an implementation plan and wait for confirmation |
 | `/hkx-plan-prd` | Draft a lean PRD under `.omp/prds/` |
-| `/hkx-build-fix` | Detect build failures and fix them incrementally |
-| `/hkx-code-review` | Review local changes or a PR without posting externally by default |
+| `/hkx-project-init` | Propose an OMP project setup plan |
+| `/hkx-quality-gate` | Run the repo's validation gates and report status |
+| `/hkx-refactor-clean` | Refactor with scoped tests and behavior preservation |
 | `/hkx-review-pr` | Orchestrate read-only PR or local diff review across available reviewer agents |
+| `/hkx-security-scan` | Scan agent, config, secret, and dependency surfaces |
+| `/hkx-skill-create` | Analyze git history to extract patterns and generate SKILL.md files |
+| `/hkx-skill-health` | Audit health of all installed skills in the skill portfolio |
+| `/hkx-test-coverage` | Identify and close meaningful coverage gaps |
 | `/hkx-update-codemaps` | Generate token-lean architecture codemaps from local repo evidence |
 | `/hkx-update-docs` | Refresh docs from source-of-truth files while preserving hand-written intent |
-| `/hkx-checkpoint` | Create, compare, or list lightweight `.omp/checkpoints.log` workflow checkpoints |
-| `/hkx-quality-gate` | Run the repo's validation gates and report status |
-| `/hkx-security-scan` | Scan agent, config, secret, and dependency surfaces |
-| `/hkx-refactor-clean` | Refactor with scoped tests and behavior preservation |
-| `/hkx-test-coverage` | Identify and close meaningful coverage gaps |
-| `/hkx-project-init` | Propose an OMP project setup plan |
-
+| `/hkx-workflow` | Research, plan, implement, verify, and review with OMP-native agents |
 ## Skills
 
 | Skill | Purpose |
@@ -111,24 +113,24 @@ All commands use an `hkx-` prefix to avoid collisions with OMP built-ins.
 | `hkx-plan-orchestrate` | Multi-step plan decomposition and agent chain design |
 | `hkx-research-ops` | Evidence-first current-state research workflow |
 
-## Agents
+This package ports 15 portable reviewer, documentation, build resolver, and architecture agents.
 
-This package ports 12 portable reviewer, documentation, and build resolver agents.
 
-| Agent | Purpose |
-|---|---|
-| `typescript-reviewer` | Expert TypeScript/JavaScript code reviewer specializing in safety, correctness, and patterns |
 | `build-error-resolver` | Build and TypeScript error resolution specialist for minimal code changes and quick recovery |
-| `python-reviewer` | Expert Python code reviewer specializing in PEP 8 compliance, idioms, type hints, security, and performance |
-| `rust-reviewer` | Expert Rust code reviewer specializing in ownership, lifetimes, safety, error handling, and performance |
-| `rust-build-resolver` | Rust build, compilation, borrow checker, and dependency error resolution specialist |
-| `go-reviewer` | Expert Go code reviewer specializing in idiomatic patterns, concurrency, error handling, and performance |
-| `go-build-resolver` | Go build, vet, linter, and module dependency resolution specialist |
-| `security-reviewer` | Security reviewer for auth, input, data, secrets, dependencies, and trust-boundary changes |
+| `code-architect` | Designs feature architectures by analyzing codebase patterns and providing implementation blueprints |
+| `code-explorer` | Deeply analyzes codebase features by tracing execution paths, mapping architecture layers, and documenting dependencies |
 | `code-reviewer` | General evidence-gated code reviewer for correctness, maintainability, security, performance, and tests |
-| `silent-failure-hunter` | Reviewer for swallowed errors, dangerous fallbacks, and missing failure propagation |
-| `pr-test-analyzer` | PR test-quality reviewer focused on behavior coverage and regression risk |
+| `code-simplifier` | Simplifies and refines code for clarity, consistency, and maintainability while preserving behavior |
 | `doc-updater` | Documentation and codemap specialist for evidence-backed README, guide, and codemap updates |
+| `go-build-resolver` | Go build, vet, linter, and module dependency resolution specialist |
+| `go-reviewer` | Expert Go code reviewer specializing in idiomatic patterns, concurrency, error handling, and performance |
+| `pr-test-analyzer` | PR test-quality reviewer focused on behavior coverage and regression risk |
+| `python-reviewer` | Expert Python code reviewer specializing in PEP 8 compliance, idioms, type hints, security, and performance |
+| `rust-build-resolver` | Rust build, compilation, borrow checker, and dependency error resolution specialist |
+| `rust-reviewer` | Expert Rust code reviewer specializing in ownership, lifetimes, safety, error handling, and performance |
+| `security-reviewer` | Security reviewer for auth, input, data, secrets, dependencies, and trust-boundary changes |
+| `silent-failure-hunter` | Reviewer for swallowed errors, dangerous fallbacks, and missing failure propagation |
+| `typescript-reviewer` | Expert TypeScript/JavaScript code reviewer specializing in safety, correctness, and patterns |
 
 ### Manual Activation Requirement
 
