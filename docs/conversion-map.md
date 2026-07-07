@@ -23,12 +23,16 @@ This package ports a small, useful slice of HKX into an OMP-native extension pac
 | `ECC/commands/cost-report.md` | `commands/hkx-cost-report.md` | Adapted from ECC cost-tracker: uses OMP path guidance instead of a hardcoded metrics path |
 | `ECC/commands/skill-create.md` | `commands/hkx-skill-create.md` | Adapted to OMP: removed GitHub App integration, uses `Bash` for `git log` instead of ECC scripts path |
 | `ECC/commands/skill-health.md` | `commands/hkx-skill-health.md` | Adapted to OMP: replaced ECC bash script with `grep`/`glob`/`read` tool-based audit; removed `--json` and `--panel` options |
+| `ECC/skills/ecc-recipes/SKILL.md` | `commands/hkx-recipes.md` | Advisory workflow recipe mapper: live-reads command directory, classifies into families by prefix, outputs run-order and stop condition. OMP-native `glob`/`read` instead of ECC bash-based command discovery |
+| `ECC/workflows/orch-review.workflow.js` | `commands/hkx-orch-review.md` | Multi-dimension adversarial review: parallel reviewer agents, dedup, adversarial verify of CRITICAL/HIGH. Uses OMP `task` for parallel review agents instead of ECC native Workflow tool |
+| `ECC/.kiro/hooks/session-summary.kiro.hook` | `commands/hkx-session-summary.md` | Session-end summary via `eval` and LLM completion, with optional persistence to `.omp/session-summary.log` |
+| `ECC/skills/delivery-gate/SKILL.md` | `commands/hkx-delivery-gate.md` | Pre-completion quality gate: OMP-native manual checklist using `bash` (disk, git) and `glob`/`grep` (learning artifacts, rationalization heuristics) |
 
 ## Ported Skills
 
 | HKX Source | OMP Skill | Notes |
 |---|---|---|
-| `HKX/skills/tdd-workflow/SKILL.md` | `skills/tdd-workflow/SKILL.md` | Adapted to OMP validation; synced plan handoff safety checklist and TDD evidence report from ECC (2026-06-15) |
+| `HKX/skills/tdd-workflow/SKILL.md` | `skills/tdd-workflow/SKILL.md` | Adapted to OMP validation; synced plan handoff safety checklist and TDD evidence report from ECC (2026-06-15); synced Step 0 test-runner detection (`<test>`/`<coverage>`/`<lint>` placeholders, Bun native pattern) from ECC #2347 (2026-06-30), using OMP `read`/`bash` instead of ECC's package-manager script |
 | `HKX/skills/verification-loop/SKILL.md` | `skills/verification-loop/SKILL.md` | OMP-oriented gate report |
 | `HKX/skills/coding-standards/SKILL.md` | `skills/coding-standards/SKILL.md` | Cross-language standards |
 | `HKX/skills/security-review/SKILL.md` | `skills/security-review/SKILL.md` | Agent and config security included |
@@ -91,6 +95,15 @@ This package ports a small, useful slice of HKX into an OMP-native extension pac
 | `ECC/skills/market-research/SKILL.md` | `skills/market-research/SKILL.md` | Adapted to OMP tools (`web_search`, `read`, `task`) and related skill references |
 | `ECC/skills/exa-search/SKILL.md` | `skills/exa-search/SKILL.md` | Adapted to OMP `.mcp.json` / `~/.omp/.mcp.json` config paths; added `web_search` fallback |
 | `ECC/skills/plan-orchestrate/SKILL.md` | `skills/plan-orchestrate/SKILL.md` | Adapted to OMP `task`/`parallel` invocation shape; removed ECC install form detection; aligned agent catalogue with OMP agents |
+| `ECC/skills/loop-design-check/SKILL.md` | `skills/loop-design-check/SKILL.md` | Adapted to OMP: goal-decidability and runaway-prevention for agent loops; references `parallel-execution-optimizer`/`agent-introspection-debugging` for mechanism layer; removed ECC autonomous-loops cross-refs (not ported) |
+| `ECC/skills/growth-log/SKILL.md` | `skills/growth-log/SKILL.md` | Adapted to OMP: learning-pattern capture methodology; replaced ECC `delivery-gate` Stop hook description with OMP session-end verification framing (reminder rule or manual beat, not a harness hook) |
+| `ECC/skills/browser-qa/SKILL.md` | `skills/browser-qa/SKILL.md` | Adapted to OMP `browser` tool (tab.observe/screenshot/evaluate/ariaSnapshot), read-only-first blast radius, baseline-or-die, honest a11y scope; pairs with `hkx-canary-watch` and `hkx-accessibility` |
+| `ECC/skills/delivery-gate/SKILL.md` | `skills/delivery-gate/SKILL.md` | Adapted to OMP: removed Python Stop hook, replaced with session-end gating guidance using OMP `eval`/`bash` checks for disk space, learning artifact staleness, and rationalization heuristics |
+| `ECC/skills/ecc-recipes/SKILL.md` | `skills/ecc-recipes/SKILL.md` | Adapted to OMP: replaced ECC bash-based command discovery with OMP `glob`/`read` live reads; family classification maps hkx- prefix families instead of ECC command families |
+| `ECC/workflows/orch-review.workflow.js` | `skills/orch-review/SKILL.md` | Adapted to OMP: multi-agent adversarial review using OMP `task` and reviewer agents (`code-reviewer`, `<language>-reviewer`, `security-reviewer`) instead of ECC Workflow tool; dedup and adversarial verify pattern preserved |
+| `ECC/.kiro/hooks/session-summary.kiro.hook` | `skills/session-summary/SKILL.md` | Adapted to OMP: Kiro agentStop hook converted to explicit command + skill using `eval`/`completion` and optional `.omp/session-summary.log` persistence |
+| `ECC/skills/kubernetes-patterns/SKILL.md` | `skills/kubernetes-patterns/SKILL.md` | Adapted to OMP ops-pack; cross-language infrastructure skill paired with `hkx-docker-patterns`/`hkx-deployment-patterns`; kubectl and YAML content unchanged |
+| `ECC/skills/agent-self-evaluation/SKILL.md` | `skills/agent-self-evaluation/SKILL.md` | OMP adaptation: 5-axis self-evaluation rubric and report template; removed `templates/evaluation-report.md` and `references/hook-integration.md` external refs (template inlined); Stop hook trigger generalized to OMP session-end beat; `agent-eval` related-skill ref replaced with OMP `ai-regression-testing`; pairs with `agent-evaluator` agent |
 
 ## Ported Rules
 
@@ -158,6 +171,7 @@ The `hkx-gateguard.ts` extension blocks tool execution via the `tool_call` event
 | `HKX/agents/silent-failure-hunter.md` | `agents/silent-failure-hunter.md` | Portable OMP reviewer for swallowed errors, bad fallbacks, and missing propagation |
 | `HKX/agents/typescript-reviewer.md` | `agents/typescript-reviewer.md` | Adapted tools to OMP canonical names; updated rules/skills references; model set to `pi/slow` |
 | `HKX/agents/build-error-resolver.md` | `agents/build-error-resolver.md` | Enabled OMP canonical tools; updated references to local commands/skills (`hkx-refactor-clean`, `hkx-plan`, `tdd-workflow`) |
+| `ECC/agents/agent-evaluator.md` | `agents/agent-evaluator.md` | OMP adaptation: tools `[read, search, find, bash, lsp, ast_grep]`, model `pi/slow`, kept Prompt Defense Baseline and Bash read-only constraints; removed `scripts/evaluate.py` output binding (template inlined); evaluates agent output on 5 axes, orthogonal to `code-reviewer` (which reviews code) |
 
 ### Deferred / Skipped Agents
 

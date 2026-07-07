@@ -38,6 +38,7 @@ All commands use an `hkx-` prefix to avoid collisions with OMP built-ins.
 | `/hkx-checkpoint` | Create, compare, or list lightweight `.omp/checkpoints.log` workflow checkpoints |
 | `/hkx-code-review` | Review local changes or a PR without posting externally by default |
 | `/hkx-cost-report` | Generate a local cost report from OMP cost-tracking data |
+| `/hkx-delivery-gate` | Run manual delivery quality checks before session completion |
 | `/hkx-plan` | Produce an implementation plan and wait for confirmation |
 | `/hkx-plan-prd` | Draft a lean PRD under `.omp/prds/` |
 | `/hkx-project-init` | Propose an OMP project setup plan |
@@ -50,6 +51,9 @@ All commands use an `hkx-` prefix to avoid collisions with OMP built-ins.
 | `/hkx-test-coverage` | Identify and close meaningful coverage gaps |
 | `/hkx-update-codemaps` | Generate token-lean architecture codemaps from local repo evidence |
 | `/hkx-update-docs` | Refresh docs from source-of-truth files while preserving hand-written intent |
+| `/hkx-recipes` | Browse or match OMP command-group recipe families by workflow description |
+| `/hkx-orch-review` | Multi-dimension adversarial review of local changes or a PR using parallel OMP reviewer agents |
+| `/hkx-session-summary` | Generate a concise session-end summary from git log and file change evidence |
 | `/hkx-workflow` | Research, plan, implement, verify, and review with OMP-native agents |
 ## Skills
 
@@ -112,6 +116,10 @@ All commands use an `hkx-` prefix to avoid collisions with OMP built-ins.
 | `hkx-market-research` | Competitive analysis, market intelligence, and industry research |
 | `hkx-plan-orchestrate` | Multi-step plan decomposition and agent chain design |
 | `hkx-research-ops` | Evidence-first current-state research workflow |
+| `hkx-delivery-gate` | OMP delivery gating principles — learning artifacts updated, disks safe, no task rationalization |
+| `hkx-ecc-recipes` | Map a described OMP workflow to the right hkx- command group with run-order and stop condition |
+| `hkx-orch-review` | Multi-agent adversarial review workflow using parallel reviewer agents, dedup, and adversarial verification |
+| `hkx-session-summary` | Generate a concise session-end summary from git log and file change evidence |
 
 This package ports 15 portable reviewer, documentation, build resolver, and architecture agents.
 

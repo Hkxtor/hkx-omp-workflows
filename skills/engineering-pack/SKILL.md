@@ -1,6 +1,6 @@
 ---
 name: hkx-engineering-pack
-description: Router for the HKX OMP engineering pack: research, context retrieval, intent capture, parallel execution, pre-action gating, context hygiene, error handling, API design, connectors, architecture, migrations, production audit, repo scan, onboarding, code tours, ADRs, docs lookup, E2E, and accessibility.
+description: Router for the HKX OMP engineering pack: research, context retrieval, intent capture, parallel execution, agent-loop design and runaway review, pre-action gating, context hygiene, error handling, API design, connectors, architecture, migrations, production audit, repo scan, onboarding, code tours, ADRs, docs lookup, E2E, accessibility, post-deploy browser QA, and learning capture.
 origin: HKX-converted-for-OMP
 ---
 
@@ -18,6 +18,7 @@ work surface.
 | Progressive context retrieval before handoff | `hkx-iterative-retrieval` |
 | Acceptance criteria and risk framing | `hkx-intent-driven-development` |
 | Parallel work lane planning | `hkx-parallel-execution-optimizer` |
+| Goal-oriented agent loop design and runaway review | `hkx-loop-design-check` |
 | Fact-forcing before risky actions | `hkx-gateguard` |
 | Phase-boundary context hygiene | `hkx-strategic-compact` |
 | Failure contracts and error paths | `hkx-error-handling` |
@@ -33,6 +34,8 @@ work surface.
 | Current external library/framework/API docs | `hkx-documentation-lookup` |
 | Browser or workflow E2E tests | `hkx-e2e-testing` |
 | Inclusive UI/accessibility review | `hkx-accessibility` |
+| Post-deploy visual testing and UI interaction verification | `hkx-browser-qa` |
+| Reusable learning-pattern capture from complex tasks | `hkx-growth-log` |
 
 ## Selection Rules
 
@@ -41,6 +44,7 @@ work surface.
 - Use `hkx-iterative-retrieval` when broad searches are inconclusive or before delegating unfamiliar repo work.
 - Use `hkx-intent-driven-development` when the requested outcome is ambiguous, high-risk, or needs acceptance criteria.
 - Use `hkx-parallel-execution-optimizer` when several independent lanes can run concurrently.
+- Use `hkx-loop-design-check` when designing or reviewing a repeating agent loop — it covers goal decidability and runaway prevention only; pair with `hkx-parallel-execution-optimizer` / `hkx-agent-introspection-debugging` for mechanism.
 - Use `hkx-gateguard` before risky edits, new surfaces, or commands where concrete repository evidence is required.
 - Use `hkx-strategic-compact` at safe phase boundaries in long sessions after durable state is summarized.
 - Use `hkx-documentation-lookup` when library, framework, SDK, CLI, or API
@@ -62,8 +66,8 @@ work surface.
 - Use `hkx-architecture-decision-records` when a durable architecture decision is
   made, changed, or investigated.
 - Use `hkx-e2e-testing` for user-visible flows and CLI/browser smoke workflows.
-- Use `hkx-accessibility` for interactive UI, forms, keyboard behavior, focus, and
-  semantics.
+- Use `hkx-browser-qa` for post-deploy visual smoke, interaction, regression, and a11y checks against a staging URL via the OMP `browser` tool.
+- Use `hkx-growth-log` to extract a transferable learning entry after a complex task, failure, or non-obvious decision.
 - Pair with language skills such as `hkx-typescript-workflow`,
   `hkx-python-workflow`, `hkx-rust-workflow`, or `hkx-go-workflow` when editing
   code.

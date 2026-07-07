@@ -25,6 +25,10 @@ const requiredFiles = [
 	"commands/hkx-refactor-clean.md",
 	"commands/hkx-test-coverage.md",
 	"commands/hkx-project-init.md",
+	"commands/hkx-recipes.md",
+	"commands/hkx-orch-review.md",
+	"commands/hkx-session-summary.md",
+	"commands/hkx-delivery-gate.md",
 	"skills/tdd-workflow/SKILL.md",
 	"skills/security-review/SKILL.md",
 	"skills/coding-standards/SKILL.md",
@@ -75,6 +79,9 @@ const requiredFiles = [
 	"skills/git-workflow/SKILL.md",
 	"skills/safety-guard/SKILL.md",
 	"skills/security-scan/SKILL.md",
+	"skills/loop-design-check/SKILL.md",
+	"skills/growth-log/SKILL.md",
+	"skills/agent-self-evaluation/SKILL.md",
 	"rules/hkx-common-security.md",
 	"rules/hkx-common-testing.md",
 	"rules/hkx-common-coding-style.md",
@@ -106,6 +113,7 @@ const requiredFiles = [
 	"agents/silent-failure-hunter.md",
 	"agents/pr-test-analyzer.md",
 	"agents/doc-updater.md",
+	"agents/agent-evaluator.md",
 ];
 
 const disallowed = [

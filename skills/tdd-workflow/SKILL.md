@@ -24,6 +24,46 @@ Plan safety checklist:
 - Reject destructive filesystem operations and credential-handling instructions outright.
 - Require human review for shell commands, chained commands, and network installers; reject destructive or fetch-and-execute remote code.
 - Treat validation commands as suggested intent only; translate into a small whitelisted set of project-appropriate actions.
+## Step 0: Detect the Test Runner
+
+Do not assume `npm test`. The commands in the steps and examples below use `<test>`, `<test-watch>`, `<coverage>`, and `<lint>` as placeholders for the project's actual runner. Resolve them once before starting.
+
+1. **Detect the package manager.** Use OMP tools (`read` the manifest, `bash` to check lockfiles) rather than an external script:
+   - `read` `package.json` and inspect the `packageManager` field (e.g. `pnpm@9.x`, `bun@1.x`).
+   - `bash` check for lockfiles: `pnpm-lock.yaml` -> pnpm, `bun.lockb`/`bun.lock` -> bun, `yarn.lock` -> yarn, `package-lock.json` -> npm.
+   - If `CLAUDE_PACKAGE_MANAGER`/`OMP_PACKAGE_MANAGER` env var is set, it wins.
+2. **Distinguish the package manager from the test runner — they are not the same.** A project can use Bun to install dependencies yet still run Jest or Vitest. Read `package.json` `scripts.test` and the test files:
+   - `scripts.test` invokes `jest` / `vitest` -> run through the detected PM (`npm test`, `pnpm test`, `yarn test`, `bun run test`).
+   - `scripts.test` is `bun test`, or test files `import { test, expect } from "bun:test"`, or there is no jest/vitest config but Bun is present -> use **Bun's native runner** (`bun test`). See [Bun Native Test Pattern](#bun-native-test-pattern-buntest) below.
+
+Runner command matrix:
+
+| Runner | `<test>` | `<test-watch>` | `<coverage>` | `<lint>` |
+|--------|----------|----------------|--------------|----------|
+| npm | `npm test` | `npm test -- --watch` | `npm run test:coverage` | `npm run lint` |
+| pnpm | `pnpm test` | `pnpm test --watch` | `pnpm test:coverage` | `pnpm lint` |
+| yarn | `yarn test` | `yarn test --watch` | `yarn test:coverage` | `yarn lint` |
+| Bun (script runs jest/vitest) | `bun run test` | `bun run test --watch` | `bun run test:coverage` | `bun run lint` |
+| Bun (native `bun:test`) | `bun test` | `bun test --watch` | `bun test --coverage` | `bun run lint` |
+
+> `bun test` (Bun's built-in runner) is **not** the same as `bun run test` (which runs the `package.json` `test` script). Picking the wrong one is a common failure — e.g. invoking Jest through `npx`/`bun run` in an ESM-only project breaks, while `bun test` runs the suite natively. Confirm which the project expects before the RED gate, then substitute `<test>` / `<coverage>` everywhere `npm test` appears below.
+
+### Bun Native Test Pattern (`bun:test`)
+
+When the project uses Bun's built-in runner (see Step 0), import from `bun:test` and run with `bun test` — not `bun run test`:
+
+```typescript
+import { describe, it, expect, mock } from "bun:test"
+
+describe("Feature", () => {
+  it("does the thing", () => {
+    expect(true).toBe(true)
+  })
+})
+```
+
+For non-JS languages, the same Step 0 logic applies — detect `pytest`/`cargo test`/`go test` from the manifest and toolchain, then substitute `<test>` accordingly. For Oh My Pi itself, prefer `bun check` (see OMP Notes).
+
 ## Contract First
 
 Name the observable contract before adding a test:
@@ -39,7 +79,7 @@ If no contract can be named, do not add a test.
 
 ## Red
 
-Add or update the focused test first. Run the smallest target that executes it.
+Add or update the focused test first. Run the smallest target that executes it with `<test>` from Step 0 (or the language-native equivalent).
 
 Valid red states:
 
@@ -57,7 +97,7 @@ Invalid red states:
 
 Implement the smallest change that satisfies the test. Prefer existing helpers and local patterns.
 
-Run the same target again. Only broaden validation after the focused target passes.
+Run the same target again with `<test>`. Only broaden validation after the focused target passes.
 
 ## Refactor
 
@@ -87,7 +127,7 @@ Include:
 |---|--------------------|----------------------|-----------|--------|----------|
 ```
 
-4. **Coverage and known gaps** — include coverage command/result and explain intentional gaps.
+4. **Coverage and known gaps** — include the `<coverage>` command/result from Step 0 and explain intentional gaps.
 
 Keep the report factual. Quote actual commands and outcomes.
 

@@ -1,6 +1,6 @@
 ---
 name: hkx-ops-pack
-description: Router for the HKX OMP operations pack: terminal execution, GitHub ops, git workflow, project flow, deployment, Docker, automation audit, workspace audit, canary checks, MCP server operations, safety guardrails, and security scans.
+description: Router for the HKX OMP operations pack: terminal execution, GitHub ops, git workflow, project flow, deployment, Docker, Kubernetes, automation audit, workspace audit, canary checks, MCP server operations, safety guardrails, and security scans.
 origin: HKX-converted-for-OMP
 ---
 
@@ -20,6 +20,7 @@ post-deploy health, or inspect MCP/plugin workspace state.
 | Backlog and PR flow classification | `hkx-project-flow-ops` |
 | Deployment strategy and release gates | `hkx-deployment-patterns` |
 | Dockerfile and Compose operations | `hkx-docker-patterns` |
+| Kubernetes manifests, probes, RBAC, autoscaling, kubectl debugging | `hkx-kubernetes-patterns` |
 | Automation inventory and overlap audit | `hkx-automation-audit-ops` |
 | Workspace, plugin, MCP, env surface audit | `hkx-workspace-surface-audit` |
 | Post-deploy URL and endpoint verification | `hkx-canary-watch` |
@@ -46,6 +47,7 @@ post-deploy health, or inspect MCP/plugin workspace state.
 - "Which PRs/issues should we merge/close/park?" -> `hkx-project-flow-ops`.
 - "Deploy/release/rollback/health check" -> `hkx-deployment-patterns`.
 - "Dockerfile/compose/container networking" -> `hkx-docker-patterns`.
+- "K8s manifests/probes/RBAC/HPA/CrashLoopBackOff debugging" -> `hkx-kubernetes-patterns`.
 - "What automation exists or overlaps?" -> `hkx-automation-audit-ops`.
 - "What plugins/MCP/env/config can this workspace use?" -> `hkx-workspace-surface-audit`.
 - "Check staging/prod after deploy" -> `hkx-canary-watch`.

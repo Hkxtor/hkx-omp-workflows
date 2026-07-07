@@ -69,6 +69,7 @@ Deferred surfaces stay out of this core package unless the user explicitly asks 
 - `tools` must use OMP canonical tool names accepted by `scripts/validate.mjs`.
 - Agents in this extension package are portable definitions. OMP core may not auto-discover extension `agents/`; users may need to copy or symlink them into `.omp/agents/` or `~/.omp/agents/`.
 - Keep agent responsibilities narrow: reviewers review, build resolvers fix build/type/test failures with minimal diffs.
+- `agent-evaluator` is a meta-evaluator of agent output (5-axis scorecard: accuracy, completeness, clarity, actionability, conciseness). It is orthogonal to `code-reviewer` and the language reviewers, which review code — `agent-evaluator` reviews what an agent delivered against what was asked. Pair it with the `agent-self-evaluation` skill for an independent second-party assessment.
 
 ### Extensions
 
